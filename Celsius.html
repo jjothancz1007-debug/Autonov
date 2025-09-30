@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversión Celsius ↔ Fahrenheit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #cce5ff, #e6f7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .contenedor {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+    }
+    h1 {
+      color: #005580;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input, select, button {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #005580;
+    }
+    .resultado {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #007700;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Conversor de Temperatura</h1>
+    <p>Selecciona el tipo de conversión:</p>
+
+    <select id="opcion">
+      <option value="1">Celsius → Fahrenheit</option>
+      <option value="2">Fahrenheit → Celsius</option>
+    </select>
+
+    <input type="number" id="valor" placeholder="Ingresa la temperatura">
+    <button onclick="convertir()">Convertir</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function convertir() {
+      let opcion = document.getElementById("opcion").value;
+      let valor = parseFloat(document.getElementById("valor").value);
+      let resultado = document.getElementById("resultado");
+
+      if (isNaN(valor)) {
+        resultado.textContent = "Por favor ingresa un número válido.";
+        resultado.style.color = "red";
+        return;
+      }
+
+      if (opcion === "1") {
+        let fahrenheit = (valor * 9 / 5) + 32;
+        resultado.textContent = valor + " °C = " + fahrenheit.toFixed(2) + " °F";
+        resultado.style.color = "#007700";
+      } else {
+        let celsius = (valor - 32) * 5 / 9;
+        resultado.textContent = valor + " °F = " + celsius.toFixed(2) + " °C";
+        resultado.style.color = "#007700";
+      }
+    }
+  </script>
+</body>
+</html>
